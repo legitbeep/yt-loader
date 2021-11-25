@@ -4,7 +4,6 @@ import {
   Heading,
   Image,
   Text,
-  Link as ChakraLink,
   useColorMode,
 } from "@chakra-ui/react";
 import Link from "next/link";

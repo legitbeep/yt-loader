@@ -7,7 +7,11 @@ const CTASection = () => {
   return (
     <Box textAlign="center" marginTop={8}>
       <Flex marginY={4} justifyContent="center" gridGap={2}>
-        <Link aria-label="Deploy to Vercel" isExternal href="google.com">
+        <Link
+          aria-label="Deploy to Vercel"
+          isExternal
+          href="https://vercel.com/import/git?s=https://github.com/legitbeep/nextchakra-starter"
+        >
           <Image src="https://vercel.com/button" alt="Vercel deploy button" />
         </Link>
       </Flex>
