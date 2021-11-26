@@ -2,15 +2,17 @@ import { Box } from "@chakra-ui/react";
 
 import TextSection from "components/TextSection";
 import CTASection from "components/CTASection";
-import ImageSection from "components/ImageSection";
+import ContentSection from "components/ContentSection";
+import AnimateWrapper from "components/AnimateWrapper";
 
 const Home = () => {
   return (
-    <Box mb={8} w="full">
-      <TextSection />
-      <ImageSection />
-      <CTASection />
-    </Box>
+    <AnimateWrapper>
+      <Box mb={8} w="full">
+        <TextSection />
+        <ContentSection />
+      </Box>
+    </AnimateWrapper>
   );
 };
 

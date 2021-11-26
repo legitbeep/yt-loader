@@ -1,6 +1,7 @@
 {
-  "name": "nextchakra-starter",
+  "name": "yt-loader",
   "private": true,
+  "version": "1.0.0",
   "author": "legitbeep",
   "scripts": {
     "dev": "next dev",

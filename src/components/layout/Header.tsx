@@ -1,4 +1,4 @@
-import { Box, Flex, Heading } from "@chakra-ui/react";
+import { Box, Flex, Heading, Link as ChakraLink, Text } from "@chakra-ui/react";
 import Link from "next/link";
 
 import ThemeToggle from "./ThemeToggle";
@@ -6,7 +6,16 @@ import ThemeToggle from "./ThemeToggle";
 const Header = () => (
   <Flex as="header" width="full" align="center">
     <Heading as="h1" size="md">
-      <Link href="/">nextchakra-starter</Link>
+      <Link href="/" passHref>
+        <ChakraLink _hover={undefined}>
+          <Flex alignItems="center" gridGap={4}>
+            <Box>
+              <Heading as="h3">YTLoader</Heading>
+              <Text as="p">Free youtube downloader</Text>
+            </Box>
+          </Flex>
+        </ChakraLink>
+      </Link>
     </Heading>
 
     <Box marginLeft="auto">

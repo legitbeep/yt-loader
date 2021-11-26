@@ -16,16 +16,6 @@ const TextSection = () => {
       <Heading as="h2" fontSize="3xl">
         Welcome
       </Heading>
-
-      <Box
-        backgroundColor={colorMode === "light" ? "gray.200" : "gray.500"}
-        padding={4}
-        borderRadius={4}
-      >
-        <Box d="flex" alignItems="center" fontSize={textSize}>
-          Next.js starter fueled with Typescript and Chakra-UI.
-        </Box>
-      </Box>
     </>
   );
 };

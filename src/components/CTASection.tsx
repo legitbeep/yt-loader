@@ -1,7 +1,7 @@
 import { Box, Button, Code, Flex, Image, Link } from "@chakra-ui/react";
 import { AiFillGithub } from "react-icons/ai";
 
-const repoLink = "https://github.com/legitbeep/nextchakra-starter";
+const repoLink = "https://github.com/legitbeep/yt-loader";
 
 const CTASection = () => {
   return (
@@ -10,19 +10,19 @@ const CTASection = () => {
         <Link
           aria-label="Deploy to Vercel"
           isExternal
-          href="https://vercel.com/import/git?s=https://github.com/legitbeep/nextchakra-starter"
+          href="https://vercel.com/import/git?s=https://github.com/legitbeep/yt-loader"
         >
           <Image src="https://vercel.com/button" alt="Vercel deploy button" />
         </Link>
       </Flex>
 
       <Box marginY={2}>
-        <Code>npx degit legitbeep/nextchakra-starter {"<YOUR_APP_NAME>"} </Code>
+        <Code>npx degit legitbeep/yt-loader {"<YOUR_APP_NAME>"} </Code>
         <br />
         <Button
           marginTop={2}
           as="a"
-          href="https://github.com/legitbeep/nextchakra-starter/generate"
+          href="https://github.com/legitbeep/yt-loader/generate"
           target="_blank"
           size="sm"
         >
@@ -42,7 +42,7 @@ const CTASection = () => {
         </Button>
         <Link href={repoLink} isExternal>
           <Image
-            src="https://img.shields.io/github/stars/legitbeep/nextchakra-starter?style=social"
+            src="https://img.shields.io/github/stars/legitbeep/yt-loader?style=social"
             align="center"
             alt="github stars"
           />

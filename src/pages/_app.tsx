@@ -4,6 +4,7 @@ import { CacheProvider } from "@emotion/react";
 import { DefaultSeo } from "next-seo";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { AnimatePresence } from "framer-motion";
 import "@fontsource/lexend";
 
 import defaultSeoConfig from "../../next-seo.config";
@@ -31,7 +32,9 @@ function MyApp({
         </Head>
         <DefaultSeo {...defaultSeoConfig} />
         <Layout>
-          <Component {...pageProps} />
+          <AnimatePresence exitBeforeEnter>
+            <Component {...pageProps} />
+          </AnimatePresence>
         </Layout>
       </ChakraProvider>
     </CacheProvider>

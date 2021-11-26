@@ -9,11 +9,12 @@ import {
 import Link from "next/link";
 
 import MotionBox from "components/motion/Box";
+import AnimateWrapper from "components/animateWrapper";
 
 const NotFound = () => {
   const { colorMode } = useColorMode();
   return (
-    <>
+    <AnimateWrapper>
       <MotionBox
         animate={{ y: 20 }}
         transition={{ repeat: Infinity, duration: 2, repeatType: "reverse" }}
@@ -36,7 +37,7 @@ const NotFound = () => {
           </Link>
         </Box>
       </Box>
-    </>
+    </AnimateWrapper>
   );
 };
 
