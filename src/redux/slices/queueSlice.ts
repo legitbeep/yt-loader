@@ -20,15 +20,19 @@ const initialState: queueInterface = {
 }
 
 export const getVideo = (req: req):AppThunk => async(dispatch, getState) => {
+    
     dispatch(queueActions.loading())
     // req backend
     try {
-        const response:Partial<IVideo> = await fetch("http://localhost:3000/api/search-vid",{
-            method: "GET",
+        const response = await fetch("http://localhost:3000/api/search-video",{
+            method: "POST",
             body : JSON.stringify(req),
         });
-        dispatch(queueActions.curVideo(response as IVideo))
+        const data = await response.json();
+        console.log(data)
+        dispatch(queueActions.curVideo(data));
     } catch (err) {
+        console.log(err)
         dispatch(queueActions.error());
     }
 }

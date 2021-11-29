@@ -19,15 +19,21 @@ const ContentSection = () => {
   const [format, setFormat] = useState("mp4");
 
   const submitHandler = () => {
-    if (format === "mp3" || format === "mp4")
-      dispatch(getVideo({ url, type: format }));
+    try {
+      const urlCheck = new URL(url);
+      if (format === "mp3" || format === "mp4")
+        dispatch(getVideo({ url, type: format }));
+    } catch {
+      console.log("NOT URL");
+    }
     // dispatch(
     //   queueActions.push({ title: "Some random video", url: "", image, id })
     // );
   };
   useEffect(() => {
-    console.log(queue.curVideo);
+    console.log(queue);
   }, [queue]);
+
   return (
     <Card margin="20px 0px">
       {/* <Flex gridGap={4}> */}
@@ -53,6 +59,7 @@ const ContentSection = () => {
         marginTop="20px"
         border="2px solid black"
         onClick={submitHandler}
+        disabled={url.length <= 3}
       >
         Submit
       </Button>
