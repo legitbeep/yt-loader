@@ -8,21 +8,29 @@ export interface queueInterface {
     status : 'idle' | 'loading' | 'success' | 'error' ;
 }
 
+type req = {
+    type: "mp4" | "mp3";
+    url : string;
+}
+
 const initialState: queueInterface = {
     videos: [],
     status : "idle",
     curVideo : null,
 }
 
-export const getVideo = (name: string):AppThunk => async(dispatch, getState) => {
-    // dispatch(queueActions.loading())
+export const getVideo = (req: req):AppThunk => async(dispatch, getState) => {
+    dispatch(queueActions.loading())
     // req backend
-    // try {
-    //     const response = {};
-    //     dispatch(queueActions.curVideo(response))
-    // } catch (err) {
-    //     dispatch(queueActions.error(err));
-    // }
+    try {
+        const response:Partial<IVideo> = await fetch("http://localhost:3000/api/search-vid",{
+            method: "GET",
+            body : JSON.stringify(req),
+        });
+        dispatch(queueActions.curVideo(response as IVideo))
+    } catch (err) {
+        dispatch(queueActions.error());
+    }
 }
 
 export const queueSlice = createSlice({

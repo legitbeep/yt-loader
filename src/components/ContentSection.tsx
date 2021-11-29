@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useColorMode, Flex, Grid, Button } from "@chakra-ui/react";
 import Image from "next/image";
 import { nanoid } from "nanoid";
@@ -8,7 +8,7 @@ import CustomInput from "./ui/Input";
 import Card from "./ui/Card";
 
 import { useAppDispatch, useAppSelector } from "hooks";
-import { selectQueue, queueActions } from "redux/slices/queueSlice";
+import { selectQueue, queueActions, getVideo } from "redux/slices/queueSlice";
 
 const ContentSection = () => {
   const dispatch = useAppDispatch();
@@ -19,14 +19,15 @@ const ContentSection = () => {
   const [format, setFormat] = useState("mp4");
 
   const submitHandler = () => {
-    const id = nanoid();
-    const image =
-      "https://wallpaperboat.com/wp-content/uploads/2020/04/green-aesthetic-wallpaper-20.jpg";
-    dispatch(
-      queueActions.push({ title: "Some random video", url: "", image, id })
-    );
+    if (format === "mp3" || format === "mp4")
+      dispatch(getVideo({ url, type: format }));
+    // dispatch(
+    //   queueActions.push({ title: "Some random video", url: "", image, id })
+    // );
   };
-
+  useEffect(() => {
+    console.log(queue.curVideo);
+  }, [queue]);
   return (
     <Card margin="20px 0px">
       {/* <Flex gridGap={4}> */}
