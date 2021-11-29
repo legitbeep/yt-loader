@@ -36,14 +36,14 @@ export const queueSlice = createSlice({
             state.curVideo = action.payload || null;
             state.status = "success"
         },
-        push : (state) => {
-            if ( state.curVideo && !state.videos.includes(state.curVideo as IVideo) ){
-                state.videos = [...state.videos,state.curVideo];
+        push : (state, action: PayloadAction<IVideo>) => {
+            if ( !state.videos.includes(action.payload as IVideo) ){
+                state.videos = [...state.videos,action.payload];
             }
             state.status = 'success';
         },
-        pop : (state, action : PayloadAction<IVideo>) => {
-            state.videos = state.videos.filter( vid => vid.id !== action.payload.id )
+        pop : (state, action : PayloadAction<string>) => {
+            state.videos = state.videos.filter( vid => vid.id !== action.payload )
             state.status = "success";
         },
         error : (state) => {
@@ -53,5 +53,5 @@ export const queueSlice = createSlice({
 })
 
 export const queueActions = queueSlice.actions;
-export const getQueue = (state : RootState) => ({...state.queue})
+export const selectQueue = (state : RootState) => (state.queue)
 export default queueSlice.reducer;

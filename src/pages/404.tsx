@@ -9,7 +9,7 @@ import {
 import Link from "next/link";
 
 import MotionBox from "components/motion/Box";
-import AnimateWrapper from "components/animateWrapper";
+import AnimateWrapper from "components/AnimateWrapper";
 
 const NotFound = () => {
   const { colorMode } = useColorMode();

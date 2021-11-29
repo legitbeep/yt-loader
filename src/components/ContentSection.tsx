@@ -1,19 +1,34 @@
 import { useState } from "react";
-import { useColorMode, Flex, Grid } from "@chakra-ui/react";
+import { useColorMode, Flex, Grid, Button } from "@chakra-ui/react";
 import Image from "next/image";
+import { nanoid } from "nanoid";
 
 import CustomSelect from "./ui/Select";
 import CustomInput from "./ui/Input";
 import Card from "./ui/Card";
 
+import { useAppDispatch, useAppSelector } from "hooks";
+import { selectQueue, queueActions } from "redux/slices/queueSlice";
+
 const ContentSection = () => {
+  const dispatch = useAppDispatch();
+  const queue = useAppSelector(selectQueue);
   const { colorMode } = useColorMode();
 
   const [url, setUrl] = useState("");
   const [format, setFormat] = useState("mp4");
 
+  const submitHandler = () => {
+    const id = nanoid();
+    const image =
+      "https://wallpaperboat.com/wp-content/uploads/2020/04/green-aesthetic-wallpaper-20.jpg";
+    dispatch(
+      queueActions.push({ title: "Some random video", url: "", image, id })
+    );
+  };
+
   return (
-    <Card>
+    <Card margin="20px 0px">
       {/* <Flex gridGap={4}> */}
       <Grid templateColumns="2fr 1fr" gap={4}>
         <CustomInput
@@ -31,6 +46,15 @@ const ContentSection = () => {
           onChange={(e) => setFormat(e.target.value)}
         />
       </Grid>
+
+      <Button
+        width="100%"
+        marginTop="20px"
+        border="2px solid black"
+        onClick={submitHandler}
+      >
+        Submit
+      </Button>
       {/* </Flex> */}
     </Card>
   );
