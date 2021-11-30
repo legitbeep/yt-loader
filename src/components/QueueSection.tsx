@@ -25,15 +25,12 @@ const ContentSection = () => {
 
   const { colorMode } = useColorMode();
 
-  const [url, setUrl] = useState("");
-  const [format, setFormat] = useState("mp4");
-
   const deleteHandler = (id: string) => {
     dispatch(queueActions.pop(id));
   };
 
   return (
-    <Card margin="20px 0px" backgroundColor="green.700" color="white">
+    <Card margin="20px 0px" backgroundColor="orange.600" color="white">
       <Flex flexDirection="column">
         <Flex justifyContent="space-between" alignItems="center">
           <Heading as="h3" fontSize="xl">

@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { stat } from "fs";
 import { AppThunk, RootState } from "redux/store";
-
 export interface queueInterface {
     curVideo : IVideo | null | undefined;
     videos: Array<IVideo>;
@@ -24,12 +23,18 @@ export const getVideo = (req: req):AppThunk => async(dispatch, getState) => {
     dispatch(queueActions.loading())
     // req backend
     try {
-        const response = await fetch("http://localhost:3000/api/search-video",{
+        const res = await fetch("http://localhost:3000/api/search-video",{
             method: "POST",
             body : JSON.stringify(req),
         });
-        const data = await response.json();
-        console.log(data)
+        const response = await res.json();
+        //const data = convertData();
+        const data = {
+                image : response.videoDetails.thumbnails,
+                title : response.videoDetails.title,
+                videoId: response.videoDetails.videoId,
+                format : req.type,
+        }
         dispatch(queueActions.curVideo(data));
     } catch (err) {
         console.log(err)
@@ -55,7 +60,7 @@ export const queueSlice = createSlice({
             state.status = 'success';
         },
         pop : (state, action : PayloadAction<string>) => {
-            state.videos = state.videos.filter( vid => vid.id !== action.payload )
+            state.videos = state.videos.filter( vid => vid.videoId !== action.payload )
             state.status = "success";
         },
         error : (state) => {
