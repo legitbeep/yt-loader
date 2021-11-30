@@ -12,3 +12,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.vid-img {
+  border-radius: 10px;
+}

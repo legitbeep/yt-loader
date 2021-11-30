@@ -17,6 +17,6 @@ module.exports = withPWA({
   },
   reactStrictMode: true,
   images: {
-    domains: ["wallpaperboat.com"],
+    domains: ["wallpaperboat.com", "i.ytimg.com"],
   },
 });

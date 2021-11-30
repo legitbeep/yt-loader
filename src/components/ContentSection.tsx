@@ -50,6 +50,10 @@ const ContentSection = () => {
           name="format"
           width="auto"
           value={format}
+          options={[
+            { name: "MP4 / Video", value: "mp4" },
+            { name: "MP3 / Audio", value: "mp3" },
+          ]}
           onChange={(e) => setFormat(e.target.value)}
         />
       </Grid>
@@ -59,7 +63,7 @@ const ContentSection = () => {
         marginTop="20px"
         border="2px solid black"
         onClick={submitHandler}
-        disabled={url.length <= 3}
+        disabled={url.length <= 3 || queue.status === "loading"}
       >
         Submit
       </Button>

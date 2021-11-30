@@ -9,9 +9,16 @@ import {
   FormControlProps,
 } from "@chakra-ui/react";
 
+type Option = {
+  name: string;
+  value: string;
+  id?: string;
+};
+
 type CustomSelectProps = {
   helperText?: HelpTextProps["children"];
   formControlWidth?: FormControlProps["width"];
+  options: Array<Option>;
 } & Pick<FormControlProps, "isInvalid" | "label"> &
   SelectProps;
 
@@ -27,13 +34,17 @@ const CustomSelect = ({
   isInvalid,
   helperText,
   formControlWidth,
+  options,
   ...selectProps
 }: CustomSelectProps) => (
   <FormControl isInvalid={isInvalid} width={formControlWidth}>
     {label && <FormLabel>{label}</FormLabel>}
     <Select {...contraSelectStyle} {...selectProps}>
-      <option value="mp4">MP4 / Video</option>
-      <option value="mp3">MP3 / Audio</option>
+      {options.map((op) => (
+        <option key={op.value} value={op.value}>
+          {op.name}
+        </option>
+      ))}
     </Select>
     {helperText && (
       <FormHelperText color="red.400">{helperText}</FormHelperText>

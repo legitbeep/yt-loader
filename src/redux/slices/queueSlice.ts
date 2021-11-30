@@ -30,12 +30,18 @@ export const getVideo = (req: req):AppThunk => async(dispatch, getState) => {
         const response = await res.json();
         //const data = convertData();
         const data = {
-                image : response.videoDetails.thumbnails,
+                image : response.videoDetails.thumbnails[3].url,
                 title : response.videoDetails.title,
                 videoId: response.videoDetails.videoId,
                 format : req.type,
+                itag : response.formats,
         }
-        dispatch(queueActions.curVideo(data));
+        const curVideos = getState().queue.videos;
+        const contains = curVideos.filter(vid => vid.videoId === data.videoId);
+        if ( !contains.length )
+            dispatch(queueActions.push(data));
+        else 
+        dispatch(queueActions.success());
     } catch (err) {
         console.log(err)
         dispatch(queueActions.error());
@@ -65,6 +71,9 @@ export const queueSlice = createSlice({
         },
         error : (state) => {
             state.status = "error";
+        },
+        success: (state) => {
+            state.status = "success";
         }
     },
 })
