@@ -25,7 +25,6 @@ export default async function(req: NextApiRequest, res: NextApiResponse) {
        
         ytdl(vidId, { filter: (format) => (format.itag === parseInt(quality as string))}).pipe(res);
     } catch (err) {
-        console.log(err)
         res.status(400).json(err)
     }
 }

@@ -25,12 +25,14 @@ const initialState: queueInterface = {
     curVideo : null,
 }
 
+const baseURL = "https://yt-loader-omega.vercel.app/";
+
 export const getVideo = (req: Req):AppThunk => async(dispatch, getState) => {
     
     dispatch(queueActions.loading())
     // req backend
     try {
-        const res = await fetch("http://localhost:3000/api/search-video",{
+        const res = await fetch(baseURL+"api/search-video",{
             method: "POST",
             body : JSON.stringify(req),
         });
@@ -61,7 +63,7 @@ export const getAudio = (req: Req):AppThunk => async(dispatch, getState) => {
     dispatch(queueActions.loading())
     // req backend
     try {
-        const res = await fetch("http://localhost:3000/api/search-audio",{
+        const res = await fetch(baseURL+"api/search-audio",{
             method: "POST",
             body : JSON.stringify(req),
         });
@@ -94,7 +96,7 @@ export const download = (vid: IVideo):AppThunk =>
             const quality = getState().queue.videos.map(v => {
                 if (v.videoId === vid.videoId && v.format === vid.format) return v.quality;
             })
-        await fetch("http://localhost:3000/api/download",{
+        await fetch(baseURL+"api/download",{
             method : "POST",
             body : JSON.stringify({...vid, quality}),
         })
