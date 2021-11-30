@@ -41,7 +41,7 @@ const CustomSelect = ({
     {label && <FormLabel>{label}</FormLabel>}
     <Select {...contraSelectStyle} {...selectProps}>
       {options.map((op) => (
-        <option key={op.value} value={op.value}>
+        <option key={op.value + op.id} value={op.value}>
           {op.name}
         </option>
       ))}

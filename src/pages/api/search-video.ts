@@ -9,7 +9,6 @@ export default async function getVideo(req: NextApiRequest, res: NextApiResponse
         const response = await ytdl.getInfo(videoId);
         res.status(200).json(response);
     } catch (err) {
-        console.log(err)
         res.status(400).json(err);
     }
 }

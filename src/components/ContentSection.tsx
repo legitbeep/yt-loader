@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useColorMode, Flex, Grid, Button } from "@chakra-ui/react";
+import { useColorMode, Flex, Grid, Button, useToast } from "@chakra-ui/react";
 import Image from "next/image";
 import { nanoid } from "nanoid";
 
@@ -8,12 +8,19 @@ import CustomInput from "./ui/Input";
 import Card from "./ui/Card";
 
 import { useAppDispatch, useAppSelector } from "hooks";
-import { selectQueue, queueActions, getVideo } from "redux/slices/queueSlice";
+import {
+  selectQueue,
+  queueActions,
+  getVideo,
+  getAudio,
+} from "redux/slices/queueSlice";
 
 const ContentSection = () => {
   const dispatch = useAppDispatch();
   const queue = useAppSelector(selectQueue);
   const { colorMode } = useColorMode();
+
+  const toast = useToast();
 
   const [url, setUrl] = useState("");
   const [format, setFormat] = useState("mp4");
@@ -21,18 +28,34 @@ const ContentSection = () => {
   const submitHandler = () => {
     try {
       const urlCheck = new URL(url);
-      if (format === "mp3" || format === "mp4")
-        dispatch(getVideo({ url, type: format }));
+      if (format === "mp4") dispatch(getVideo({ url, type: format }));
+      else if (format === "mp3") dispatch(getAudio({ url, type: format }));
     } catch {
-      console.log("NOT URL");
+      toast({
+        title: "Error.",
+        description: "Please provide valid youtube URL!",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+        position: "top-right",
+      });
     }
     // dispatch(
     //   queueActions.push({ title: "Some random video", url: "", image, id })
     // );
   };
   useEffect(() => {
-    console.log(queue);
-  }, [queue]);
+    if (queue.status === "error") {
+      toast({
+        title: "Error.",
+        description: queue.error || "Something went wrong!",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+        position: "top-right",
+      });
+    }
+  }, [queue.status]);
 
   return (
     <Card margin="20px 0px">
@@ -63,7 +86,9 @@ const ContentSection = () => {
         marginTop="20px"
         border="2px solid black"
         onClick={submitHandler}
-        disabled={url.length <= 3 || queue.status === "loading"}
+        loadingText="Loading"
+        isLoading={queue.status === "loading"}
+        disabled={url.length <= 4}
       >
         Submit
       </Button>

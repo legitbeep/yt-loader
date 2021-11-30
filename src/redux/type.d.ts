@@ -4,4 +4,5 @@
     format ?: string;
     itag: Array<any>;
     videoId : string;
+    quality?: string;
   }
