@@ -1,14 +1,14 @@
 /** @type {import('next-seo').DefaultSeoProps} */
 const defaultSEOConfig = {
-  title: "yt-loader",
-  titleTemplate: "%s | yt-loader",
+  title: "Home",
+  titleTemplate: "%s | YTLoader",
   defaultTitle: "yt-loader",
-  description: "Next.js + Chakra-ui + TypeScript template",
+  description: "🔥Best youtube to mp4/mp3 downloader on the planet.🔥",
   canonical: "",
   openGraph: {
     url: "",
     title: "yt-loader",
-    description: "Next.js + chakra-ui + TypeScript template",
+    description: "🔥Best youtube to mp4/mp3 downloader on the planet.🔥",
     images: [
       // {
       //   url:

@@ -25,7 +25,7 @@ const initialState: queueInterface = {
     curVideo : null,
 }
 
-const baseURL = "https://yt-loader-omega.vercel.app/";
+const baseURL =process.env.NODE_ENV === "development" ? "http://localhost:3000/" : "https://yt-loader-omega.vercel.app/" ;
 
 export const getVideo = (req: Req):AppThunk => async(dispatch, getState) => {
     

@@ -17,7 +17,7 @@ import { VscClearAll } from "react-icons/vsc";
 import { MdFileDownload, MdDelete } from "react-icons/md";
 
 import CustomSelect from "./ui/Select";
-import CustomInput from "./ui/Input";
+import CustomImage from "./ui/Image";
 import Card from "./ui/Card";
 
 import { useAppDispatch, useAppSelector } from "hooks";
@@ -113,17 +113,7 @@ const QueueSection = () => {
                       minHeight: "180px",
                     }}
                   >
-                    {vid.image && (
-                      <Image
-                        aria-label="video thumbnail"
-                        src={vid.image}
-                        alt="video thumbnail"
-                        height={180}
-                        width={320}
-                        objectFit="cover"
-                        className="vid-img"
-                      />
-                    )}
+                    {vid.image && <CustomImage image={vid.image} />}
                   </Box>
                   <Box width="100%">
                     <Text as="p">{trimText(vid.title, 45)}</Text>
@@ -178,8 +168,21 @@ const QueueSection = () => {
                 </Flex>
               ))
             : queue.status !== "loading" && (
-                <Flex width="100%" justifyContent="center" alignItems="center">
-                  Please search any url above
+                <Flex
+                  width="100%"
+                  flexDirection="column"
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <Image
+                    src="/blank.gif"
+                    alt=""
+                    width={320}
+                    height={180}
+                    objectFit="cover"
+                    className="vid-img"
+                  />
+                  <Text as="p">Please search any url above</Text>
                 </Flex>
               )}
         </Flex>

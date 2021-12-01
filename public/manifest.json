@@ -1,6 +1,6 @@
 {
-    "short_name": "yt-loader",
-    "name": "Next.js, Chakra-UI Template",
+    "short_name": "YTL",
+    "name": "YTLoader",
     "lang": "en",
     "start_url": "/",
     "background_color": "#FFFFFF",
