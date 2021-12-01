@@ -13,9 +13,10 @@ module.exports = withPWA({
     // to re-generate manifest.json, you can visit https://tomitm.github.io/appmanifest/
     dest: "public",
     register: true,
+    skipWaiting: true,
   },
   reactStrictMode: true,
   images: {
-    domains: ["wallpaperboat.com", "i.ytimg.com"],
+    domains: ["i.ytimg.com"],
   },
 });

@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "eslint --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "post-build": "next-sitemap"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.7.2",
