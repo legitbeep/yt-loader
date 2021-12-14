@@ -15,6 +15,8 @@ module.exports = withPWA({
     register: true,
     skipWaiting: true,
     swSrc: "service-worker.js",
+    reloadOnOnline: false,
+    buildExcludes: [/middleware-manifest.json$/],
   },
   reactStrictMode: true,
   images: {
